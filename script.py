@@ -1,13 +1,12 @@
 from random import randint, choice
 
 from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
-from datacenter.models import (
-    Schoolkid,
-    Mark,
-    Chastisement,
-    Lesson,
-    Commendation
-)
+from datacenter.models import Schoolkid
+from datacenter.models import Mark
+from datacenter.models import Chastisement
+from datacenter.models import Lesson
+from datacenter.models import Commendation
+
 
 
 def find_schoolkid(name_pattern):
