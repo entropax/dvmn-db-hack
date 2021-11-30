@@ -29,7 +29,7 @@ def remove_chastisements(schoolkid):
     Chastisement.objects.filter(schoolkid=schoolkid).delete()
 
 
-def add_random_commendation(schoolkid, subject_title):
+def add_random_commendation(schoolkid, subject_title='Математика'):
     PRAISES = [
         'Молодец!',
         'Отлично!',
