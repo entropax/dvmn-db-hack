@@ -37,7 +37,10 @@ PRAISES = [
     'Теперь у тебя точно все получится!',
 ]
 
-kid = Schoolkid.objects.filter(full_name__contains='Фролов Иван').get()
+
+def get_schoolkid(name_pattern='Фролов Иван'):
+    kid = Schoolkid.objects.filter(full_name__contains='Фролов Иван').get()
+    return kid
 
 
 def fix_marks(schoolkid):
