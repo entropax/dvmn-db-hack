@@ -30,7 +30,7 @@ def remove_chastisements(schoolkid):
 
 
 def add_random_commendation(schoolkid, subject_title='Математика'):
-    PRAISES = [
+    praises = [
         'Молодец!',
         'Отлично!',
         'Хорошо!',
@@ -62,21 +62,21 @@ def add_random_commendation(schoolkid, subject_title='Математика'):
         'Ты многое сделал, я это вижу!',
         'Теперь у тебя точно все получится!',
     ]
-    lessons = Lesson.objects.filter(
+    lesson = Lesson.objects.filter(
         year_of_study=schoolkid.year_of_study,
         group_letter=schoolkid.group_letter,
         subject__title=subject_title,
-    ).order_by('?')
-    if not lessons:
+    ).order_by('?').first()
+    if lesson:
+        Commendation.objects.create(
+                text=choice(PRAISES),
+                created=lesson.date,
+                schoolkid=schoolkid,
+                subject=lesson.subject,
+                teacher=lesson.teacher,
+            )
+    else:
         return print('Такого предмета нет, повторите запрос')
-    lesson = lessons.first()
-    Commendation.objects.create(
-            text=choice(PRAISES),
-            created=lesson.date,
-            schoolkid=schoolkid,
-            subject=lesson.subject,
-            teacher=lesson.teacher,
-        )
 
 
 if __name__ == '__main__':
